@@ -1,4 +1,5 @@
 # NBN Interactive Map Tool
+[![Build Status](https://travis-ci.org/NERC-CEH/nbn-imt?branch=master)](https://travis-ci.org/NERC-CEH/nbn-imt)
 
 Welcome to the code base for the NBN Gateway Interactive Map Tool (IMT). The following readme explains the structure and technologies used in this project. For further documentation for this product view the [CEH wiki](https://wiki.ceh.ac.uk/display/nbn/Interactive+Map+Tool).
 
