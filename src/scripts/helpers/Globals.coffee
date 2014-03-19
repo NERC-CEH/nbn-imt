@@ -9,19 +9,26 @@ define [
     switch window.location.host
       when "localhost:8080", "dev-data.nbn.org.uk" 
         api: "dev-data.nbn.org.uk/api"
-        gis: "dev-gis.nbn.org.uk"
+        gis: ["dev-gis.nbn.org.uk"]
         portal: "dev-data.nbn.org.uk" 
       when "staging-data.nbn.org.uk" 
         api: "staging-data.nbn.org.uk/api"
-        gis: "staging-gis.nbn.org.uk"
+        gis: ["staging-gis.nbn.org.uk"]
         portal: "staging-data.nbn.org.uk" 
       else  
         api: "data.nbn.org.uk/api"
-        gis: "gis.nbn.org.uk"
+        gis: ["gis1.nbn.org.uk", "gis2.nbn.org.uk", "gis3.nbn.org.uk", "gis4.nbn.org.uk"]
         portal: "data.nbn.org.uk"
 
   api: (path) -> "https://#{@servers.api}/#{path}?callback=?"
-  gis: (path, attr) -> "https://#{@servers.gis}/#{path}?#{@_buildQueryString(attr)}"
+
+  ###
+  Generate an array of gis end points which we can use to maximize parallel image requests
+  ###
+  gis: (path, attr) -> 
+    query = @_buildQueryString(attr) #Query string is same for each gis end point
+    return _.map(@servers.gis, (server) -> "https://#{server}/#{path}?#{query}")
+  
   portal: (path) -> "https://#{@servers.portal}/#{path}"
   
   ###
