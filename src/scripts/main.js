@@ -45,7 +45,7 @@ require.config({
     'proj4js' : '../vendor/proj4js/lib/proj4js-combined',
     'select2' : '../vendor/select2/select2'
   },
-  waitSeconds:200
+  waitSeconds:1000
 });
 
 require(['jquery', 'backbone', 'cs!models/App', 'cs!views/AppView', 'cs!routers/StateRouter', 'cs!routers/GetURLRouter', 'cs!helpers/GoogleAnalytics'], function($, Backbone, App, AppView, Router, GetURLRouter, GA) {
