@@ -13,7 +13,7 @@ define [
       testLayer = new SingleSpeciesLayer;
       layers.add testLayer
 
-      layers.setZoom 5
+      layers.setResolution 200
 
       expect(testLayer.get 'autoResolution').toBe "10km"
 
@@ -21,7 +21,7 @@ define [
       testLayer = new SingleSpeciesLayer;
       layers.add testLayer
 
-      layers.setZoom 13
+      layers.setResolution 2
 
       expect(testLayer.get 'maxResolution').toBe "100m"
     
@@ -36,7 +36,7 @@ define [
       expect(layers.at(0)).toBe layer2
     
     it "syncs the max/auto resolution state with new layers", ->
-      layers.setZoom 10
+      layers.setResolution 50
       testLayer = new SingleSpeciesLayer
 
       layers.add testLayer
@@ -60,39 +60,39 @@ define [
       expect(layers.at(1).get 'isPresence').toBe false
 
     describe "auto resolution", ->
-      it "goes to 10km at zoom level 1", ->
-        layers.setZoom(1)
+      it "goes to 10km at 200 resolution", ->
+        layers.setResolution 200
         expect(layers.state.get 'autoResolution').toBe '10km'
 
-      it "goes to 2km at zoom level 9", ->
-        layers.setZoom(9)
+      it "goes to 2km at 160 resolution", ->
+        layers.setResolution 160
         expect(layers.state.get 'autoResolution').toBe '2km'
 
-      it "goes to 1km at zoom level 11", ->
-        layers.setZoom(11)
+      it "goes to 1km at 30 resolution", ->
+        layers.setResolution 30
         expect(layers.state.get 'autoResolution').toBe '1km'
 
-      it "goes to 100m at zoom level 20", ->
-        layers.setZoom(20)
+      it "goes to 100m at 4 resolution", ->
+        layers.setResolution 4
         expect(layers.state.get 'autoResolution').toBe '100m'
 
     describe "max resolution", ->
-      it "goes to Polygon at zoom level 1", ->
-        layers.setZoom 1
+      it "goes to Polygon at 7000 resolution", ->
+        layers.setResolution 7000
         expect(layers.state.get 'maxResolution').toBe 'Polygon'
 
-      it "goes to 10km at zoom level 4", ->
-        layers.setZoom 4
+      it "goes to 10km at 5000 resolution", ->
+        layers.setResolution 5000
         expect(layers.state.get 'maxResolution').toBe '10km'
 
-      it "goes to 2km at zoom level 7", ->
-        layers.setZoom 7
+      it "goes to 2km at 500 resolution", ->
+        layers.setResolution 500
         expect(layers.state.get 'maxResolution').toBe '2km'
 
-      it "goes to 1km at zoom level 8", ->
-        layers.setZoom 8
+      it "goes to 1km at 340 resolution", ->
+        layers.setResolution 340
         expect(layers.state.get 'maxResolution').toBe '1km'
 
-      it "goes to 100m at zoom level 12", ->
-        layers.setZoom 12
+      it "goes to 100m at 30 resolution", ->
+        layers.setResolution 30
         expect(layers.state.get 'maxResolution').toBe '100m'
