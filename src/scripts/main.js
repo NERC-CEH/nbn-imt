@@ -54,10 +54,11 @@ require(['jquery', 'backbone', 'cs!models/App', 'cs!views/AppView', 'cs!routers/
     getMapRouter = new GetURLRouter({model: app});
     getMapRouter.navigate(location.search);
   }
-  view = new AppView({model : app});
   router = new Router({model: app});
   Backbone.history.start();
   router.refresh();
+  //Set up and handle any routing before createing the AppView.
+  view = new AppView({model : app});
   GA.listen(app, view);
 
   $('#imt').removeClass('loading'); //remove the loading class
