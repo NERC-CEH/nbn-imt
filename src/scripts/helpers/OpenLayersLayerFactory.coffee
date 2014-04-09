@@ -2,48 +2,30 @@ define [
   "openlayers"
   "cs!helpers/Globals"
 ], (OpenLayers, Globals) ->
-  #Resolutions optimized for Ordnance Survey map [2500,1e3,500,200,100,50,25,4,2.5,2,1],
-  __EPSG_27700_RESOLUTIONS__ : [  45074.742999999995, 
-                                  22537.389,
-                                  11268.6965, 
-                                  5634.3485, 
-                                  2817.174,
-                                  1408.587, 
-                                  704.2935, 
-                                  352.147, 
-                                  176.0735, 
-                                  88.0365, 
-                                  44.0185, 
-                                  22.009, 
-                                  11.005, 
-                                  5.502, 
-                                  2.751, 
-                                  1.376, 
-                                  0.688, 
-                                  0.344]
-
   getBaseLayer: (name) ->
     apiKey = "AuM6oU6uK5RCeun_EdVR4jc4ifOVUuGdtoiW0gx7vxjRD-iNT8zzCXzxKrj9tvfG"
     switch name
       when "Shaded" then return new OpenLayers.Layer.Bing( type: "Road", key: apiKey, projection: new OpenLayers.Projection("EPSG:3857") )
       when "Hybrid" then return new OpenLayers.Layer.Bing( type: "AerialWithLabels", key: apiKey, projection: new OpenLayers.Projection("EPSG:3857") )
       when "Aerial" then return new OpenLayers.Layer.Bing( type: "Aerial", key: apiKey, projection: new OpenLayers.Projection("EPSG:3857"))
-      when "OS" then return new OpenLayers.Layer.WMS name, Globals.gis("OS-Modern"), 
-              layers: "MiniScale-NoGrid,OS250k,OS50k,OS25k"
-              format:"image/png"
-            ,
-              isBaseLayer: true
-              projection: new OpenLayers.Projection("EPSG:27700")
-              resolutions: @__EPSG_27700_RESOLUTIONS__
-              attribution: "&copy; Crown copyright and database rights 2011 Ordnance Survey [100017955]"
-
+      when "OS" then return new OpenLayers.Layer.TMS name, Globals.tiles('Tiled'), 
+                isBaseLayer: true
+                serviceVersion: '1.0.0'
+                layername: 'OS'
+                type: 'png'
+                maxExtent: new OpenLayers.Bounds(0.000000, 0.000000, 700000.000000, 1300000.000000)
+                resolutions: [6400, 3200, 1600, 800, 400, 200, 100, 50, 25, 10, 5, 2.5]
+                tileOrigin: new OpenLayers.LonLat(0, 0)
+                projection: new OpenLayers.Projection("EPSG:27700")
+                attribution: "&copy; Crown copyright and database rights 2011 Ordnance Survey [100017955]"
+      
       when "Outline" then return new OpenLayers.Layer.WMS name, Globals.gis("Context"), 
               layers: "Vice-counties,Ireland-Coast"
               format:"image/png"
             ,
               isBaseLayer: true
               projection: new OpenLayers.Projection("EPSG:27700")
-              resolutions: @__EPSG_27700_RESOLUTIONS__
+              resolutions: [6400, 3200, 1600, 800, 400, 200, 100, 50, 25, 10, 5, 2.5, 1, 0.5, 0.25]
 
   ###
   Create an openlayers layer given some model/Layer which updates when different parts

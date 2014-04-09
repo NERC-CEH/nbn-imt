@@ -23,7 +23,7 @@ define [
         theme: null
         eventListeners: 
           moveend: => @model.set "viewport", do @getOpenlayersViewport
-          zoomend: => @model.getLayers().setZoom do @map.getZoom
+          zoomend: => @model.getLayers().setResolution @map.getResolution()
 
       #If base layer changes, drawing layer might need to be reprojected
       @map.events.register "changebaselayer", @drawingLayer, @drawingLayer.update 

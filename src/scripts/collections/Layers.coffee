@@ -45,23 +45,23 @@ define [
     @trigger "position", toMove, @, newPosition, index
 
   ###
-  Lets mapping views notify when the zoom level has changed.
-  The zoom level dictates which autoResolution and which resolutions
+  Lets mapping views notify when the mapping resolution level has changed.
+  The resolution level dictates which autoResolution and which resolutions
   are viewable in the map. This method will notify the relevant Layers
   of these changes and disable/reenable the Layers of this collection
   ###
-  setZoom: (zoom) ->
+  setResolution: (resolution) ->
     @state.set "autoResolution", 
-      if 13 < zoom then '100m'
-      else if 10 < zoom then '1km'
-      else if 8 < zoom then '2km'
+      if 5 > resolution then '100m'
+      else if 40 > resolution then '1km'
+      else if 175 > resolution then '2km'
       else '10km'
 
     @state.set "maxResolution",
-      if 11 < zoom then '100m'
-      else if 7 < zoom then '1km'
-      else if 6 < zoom then '2km'
-      else if 3 < zoom then '10km'
+      if 40 > resolution then '100m'
+      else if 350 > resolution then '1km'
+      else if 700 > resolution then '2km'
+      else if 6000 > resolution then '10km'
       else 'Polygon'
 
   _syncLayer: (layer) -> layer.set @state.attributes if layer.isGridLayer

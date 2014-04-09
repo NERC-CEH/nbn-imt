@@ -32,6 +32,11 @@ define [
   gis: (path, attr) -> 
     query = @_buildQueryString(attr) #Query string is same for each gis end point
     return _.map(@servers.gis, (server) -> "https://#{server}/#{path}?#{query}")
+
+  ###
+  Generate an array of gis tile endpoints for the given TMS endpoint
+  ###
+  tiles: (path) -> return _.map(@servers.gis, (server) -> "https://#{server}/#{path}/")
   
   portal: (path) -> "https://#{@servers.portal}/#{path}"
   
