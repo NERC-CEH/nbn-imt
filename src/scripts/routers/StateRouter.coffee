@@ -35,7 +35,8 @@ define [
   updateModel:(route)->
     if route?
       state = @getStateFromRoute(route) #load the state from the url
-      @model.set _.omit(state, 'layers'), routing:true
+      @model.set baseLayer: state.baseLayer, routing:true
+      @model.set viewport: state.viewport, routing:true
       layers = @model.getLayers()
 
       $.when
