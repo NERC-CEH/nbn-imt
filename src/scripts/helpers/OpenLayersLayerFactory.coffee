@@ -17,8 +17,7 @@ define [
                 resolutions: [6400, 3200, 1600, 800, 400, 200, 100, 50, 25, 10, 5, 2.5]
                 tileOrigin: new OpenLayers.LonLat(0, 0)
                 projection: new OpenLayers.Projection("EPSG:27700")
-                attribution: "&copy; Crown copyright and database rights 2011 Ordnance Survey [100017955]"
-      
+                attribution: "&copy; Crown copyright and database rights 2011 Ordnance Survey [100017955]"   
       when "Outline" then return new OpenLayers.Layer.WMS name, Globals.gis("Context"), 
               layers: "Vice-counties,Ireland-Coast"
               format:"image/png"
