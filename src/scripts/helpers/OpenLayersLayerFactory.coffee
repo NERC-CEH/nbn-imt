@@ -8,7 +8,7 @@ define [
       when "Shaded" then return new OpenLayers.Layer.Bing( type: "Road", key: apiKey, projection: new OpenLayers.Projection("EPSG:3857") )
       when "Hybrid" then return new OpenLayers.Layer.Bing( type: "AerialWithLabels", key: apiKey, projection: new OpenLayers.Projection("EPSG:3857") )
       when "Aerial" then return new OpenLayers.Layer.Bing( type: "Aerial", key: apiKey, projection: new OpenLayers.Projection("EPSG:3857"))
-      when "OS" then return new OpenLayers.Layer.TMS name, Globals.tiles('Tiled'), 
+      when "OS" then return new OpenLayers.Layer.TMS name, Globals.tms('Tiled'), 
                 isBaseLayer: true
                 serviceVersion: '1.0.0'
                 layername: 'OS'
