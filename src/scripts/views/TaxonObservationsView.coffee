@@ -17,7 +17,13 @@ define [
       "bLengthChange": false
       "oLanguage":
         "sSearch": "Search within these results:"
-    
+      "aoColumnDefs": [
+        {
+          "sWidth":"11%"
+          "aTargets":[4,5]
+        }
+      ]
+
     if (@collection.apiFailed)
       $(".polygonErrorMessage").text  @collection.apiFailureMessage
     else
