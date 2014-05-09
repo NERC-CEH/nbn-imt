@@ -1,5 +1,5 @@
 define [
-	"cs!collections/Layers"
+  "cs!collections/Layers"
   "cs!models/SingleSpeciesLayer"
   "cs!models/TaxonObservationTypes"
 ], (Layers, SingleSpeciesLayer, TaxonObservationTypes)-> 
@@ -13,7 +13,7 @@ define [
       testLayer = new SingleSpeciesLayer;
       layers.add testLayer
 
-      layers.setResolution 200
+      layers.setResolution 5000
 
       expect(testLayer.get 'autoResolution').toBe "10km"
 
@@ -36,7 +36,7 @@ define [
       expect(layers.at(0)).toBe layer2
     
     it "syncs the max/auto resolution state with new layers", ->
-      layers.setResolution 50
+      layers.setResolution 305
       testLayer = new SingleSpeciesLayer
 
       layers.add testLayer
@@ -60,8 +60,8 @@ define [
       expect(layers.at(1).get 'isPresence').toBe false
 
     describe "auto resolution", ->
-      it "goes to 10km at 200 resolution", ->
-        layers.setResolution 200
+      it "goes to 10km at 400 resolution", ->
+        layers.setResolution 400
         expect(layers.state.get 'autoResolution').toBe '10km'
 
       it "goes to 2km at 160 resolution", ->
