@@ -52,15 +52,15 @@ define [
   ###
   setResolution: (resolution) ->
     @state.set "autoResolution", 
-      if 5 > resolution then '100m'
-      else if 40 > resolution then '1km'
-      else if 175 > resolution then '2km'
+      if 20 > resolution then '100m'
+      else if 155 > resolution then '1km'
+      else if 310 > resolution then '2km'
       else '10km'
 
     @state.set "maxResolution",
       if 40 > resolution then '100m'
       else if 350 > resolution then '1km'
-      else if 700 > resolution then '2km'
+      else if 1300 > resolution then '2km'
       else if 6000 > resolution then '10km'
       else 'Polygon'
 
