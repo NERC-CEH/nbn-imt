@@ -7,10 +7,10 @@ define [
   ###
   servers: 
     switch window.location.host
-      when "data-developer.nbn.org.uk" 
-        api: "data-developer.nbn.org.uk/api"
-        gis: ["gis-developer.nbn.org.uk"]
-        portal: "data-developer.nbn.org.uk" 
+      when "developer-data.nbn.org.uk" 
+        api: "developer-data.nbn.org.uk/api"
+        gis: ["developer-gis.nbn.org.uk"]
+        portal: "developer-data.nbn.org.uk" 
       when "dev-data.nbn.org.uk" 
         api: "dev-data.nbn.org.uk/api"
         gis: ["dev-gis.nbn.org.uk"]
