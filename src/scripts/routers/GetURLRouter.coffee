@@ -1,12 +1,13 @@
 define [
   "jquery"
   "underscore"
+  "cs!helpers/representations/Viewports"
   "cs!models/HabitatLayer"
   "cs!models/SiteBoundaryLayer"
   "cs!models/SingleSpeciesLayer"
   "cs!models/DatasetSpeciesDensityLayer"
   "cs!models/DesignationSpeciesDensityLayer"
-], ($, _, HabitatLayer, SiteBoundaryLayer, SingleSpeciesLayer, DatasetSpeciesDensityLayer, DesignationSpeciesDensityLayer) -> class
+], ($, _, Viewports, HabitatLayer, SiteBoundaryLayer, SingleSpeciesLayer, DatasetSpeciesDensityLayer, DesignationSpeciesDensityLayer) -> class
   constructor: (options) ->
     @model = options.model; #store a reference to the passed in model
 
@@ -14,7 +15,7 @@ define [
     query = @createQueryObject(queryString)
 
     @model.set "baseLayer", query.baselayer if query.baselayer?
-    @model.set "viewport", @getBBox(query.bbox), showAll: true if query.bbox? 
+    @model.set "viewport", Viewports.expandViewport(query.bbox), showAll: true if query.bbox? 
     @getLayers @model.getLayers(), query
 
   getLayers: (layers, query)->
@@ -66,10 +67,3 @@ define [
           return obj
         , {})
       .value()
-
-  getBBox: (bboxStr) ->
-    bboxParts = bboxStr.split ','
-    minX: bboxParts[0]
-    minY: bboxParts[1]
-    maxX: bboxParts[2]
-    maxY: bboxParts[3]
