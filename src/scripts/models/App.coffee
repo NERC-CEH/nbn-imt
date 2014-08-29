@@ -11,7 +11,7 @@ define [
       maxX: 7.87906407581859
       minY: 49.825193671965025
       maxY: 59.45733404137668
-    baseLayer: "Aerial"
+    baseLayer: "Hybrid"
     layers: new Layers
     currentUser: new User
     controlPanelVisible: false
