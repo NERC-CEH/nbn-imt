@@ -43,7 +43,7 @@ The following are used for building and dependency management
 * [LESS](http://lesscss.org) - Used for compiling style sheets
 
 ### Testing
-The client side code is tested using [jasmine](http://pivotal.github.io/jasmine) tests. These can be executed at the command line using the grunt task *test*. Testing is performed in the headless webkit engine [PhantomJS](http://phantomjs.org/)
+The client side code is tested using [jasmine](https://jasmine.github.io/) tests. These can be executed at the command line using the grunt task *test*. Testing is performed in the headless webkit engine [PhantomJS](http://phantomjs.org/)
 
 ### Client side libraries
 
